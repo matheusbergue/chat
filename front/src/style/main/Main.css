@@ -1,0 +1,116 @@
+main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
+main .users-list {
+    position: relative;
+    width: 30%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.274);
+}
+
+main .chat-area {
+
+}
+
+.user-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.253);
+    width: 100%;
+    height: 60px;
+    cursor: pointer;
+}
+
+.user-select:hover {
+    background-color: rgb(216, 216, 216);
+}
+
+main #sair {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+    margin-bottom: 3px;
+    outline: none;
+    border: none;
+    font-weight: 600;
+    color: red;
+    background-color: white;
+}
+
+
+/*Chat-area*/
+
+.chat-area {
+    display: none; /*grid*/
+    grid-template-rows: 60px auto 60px;
+    width: 70%;
+    height: 100%;
+}
+
+.chat-area .cabecalho{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.233);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    background-color: aquamarine;
+}
+
+
+.chat-area .msg-area {
+    padding: 15px 5px;
+    background-color: red;
+    overflow: auto;
+}
+
+.chat-area .inputs {
+    padding: 5px 5px;
+    display: grid;
+    grid-template-columns: auto 50px;
+    background-color: blueviolet;
+}
+
+.chat-area #input-text{
+    border: none;
+    outline: none;
+}
+.chat-area #input-button {
+
+}
+
+
+.msg-area .send-msg {
+    padding: 7px;
+    background-color: aqua;
+    width: max-content;
+    margin-bottom: 5px;
+    float: right;
+}
+
+.msg-area .receive-msg {
+    padding: 7px;
+    background-color: aqua;
+    width: max-content;
+    margin-bottom: 5px;
+    float: left;
+}
+
+/*Fim chat-area*/
+
+
+main .empety-chat{
+    width: 70%;
+    height: 100%;
+    background-color: blue;
+}
+
+
+
