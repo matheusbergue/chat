@@ -27,3 +27,7 @@ form.addEventListener('submit', async event => {
         window.location.replace('/')
     } else window.alert('Usuario ou senha incorreto!!!')
 })
+
+
+
+
