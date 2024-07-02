@@ -7,6 +7,8 @@ const friendButton = document.getElementsByClassName('user-select')
 const cabecalhoChatArea = document.getElementById('cabecalho')
 const chatArea = document.getElementById('chat-area')
 const empetyChat = document.getElementById('empety-chat')
+const sendButton = document.getElementById('input-button')
+const inputText = document.getElementById('input-text')
 
 
 
@@ -50,6 +52,7 @@ function attInfos () {
 function clickFriendEvent() {
     for (let i = 0; friendButton.length > i; i++) {
         friendButton[i].addEventListener('click', event => {
+            sessionStorage.setItem('userSelected', friendButton[i].getAttribute('name'))
             cabecalhoChatArea.innerHTML = `<span>${friendButton[i].getAttribute('apelido')}</span>`
             empetyChat.style.display = 'none'
             chatArea.style.display = 'grid'
@@ -83,12 +86,43 @@ async function tempTest (d) {
 
 
 
+function sendMsg(para, msg) {
+    const alvo = JSON.parse(localStorage.getItem(para))
+    if (alvo == null && alvo == undefined && alvo == false) { localStorage.setItem(para, JSON.stringify([msg])); return }
+    alvo.push(msg)
+    localStorage.setItem(para, JSON.stringify(alvo))
+}
+
+
+
+function initChats() {
+    loginData.amigos.map(i => {
+        if (JSON.parse(localStorage.getItem(i.userName)) != null) return
+        localStorage.setItem(i.userName, JSON.stringify([]))
+    })
+}
+
+
+
 window.addEventListener('load', event => {
     const tempData = JSON.parse(sessionStorage.getItem('l'))
     if (!tempData) tempTest()
     attInfos()
     clickFriendEvent()
+
+
+    initChats()
+
     
+})
+
+sendButton.addEventListener('click', event => {
+    sendMsg(sessionStorage.getItem('userSelected'), {
+        text: inputText.value,
+        time: '20:30',
+        origin: 0
+    })
+
 })
 
 
