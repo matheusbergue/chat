@@ -12,7 +12,7 @@ form.addEventListener('submit', async event => {
             'Content-Type': 'application/json'
         }
     }
-    const response = await fetch('http://localhost:3000/login', data)
+    const response = await fetch('http://192.168.0.102:3000/login', data)
     const body = await response.json()
 
 

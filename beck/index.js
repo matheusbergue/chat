@@ -13,7 +13,7 @@ const app = express()
 const httpServer = createServer(app)
 const io = new Server(httpServer, {
     cors: {
-        origin: 'http://localhost:5000'
+        origin: 'http://192.168.0.102:5000'
     }
 });
 app.use(express.json())

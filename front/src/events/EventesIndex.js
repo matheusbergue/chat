@@ -9,6 +9,7 @@ const chatArea = document.getElementById('chat-area')
 const empetyChat = document.getElementById('empety-chat')
 const sendButton = document.getElementById('input-button')
 const inputText = document.getElementById('input-text')
+const msgArea = document.getElementById('msgArea')
 
 
 
@@ -16,7 +17,7 @@ const loginData = JSON.parse(localStorage.getItem('loginData'))
 
 if (!loginData) window.location.replace('/login.html')
 
-let socket = io('http://localhost:3000', {
+let socket = io('http://192.168.0.102:3000', {
     auth: {
         userName: loginData.userName,
     }
@@ -56,6 +57,17 @@ function clickFriendEvent() {
             cabecalhoChatArea.innerHTML = `<span>${friendButton[i].getAttribute('apelido')}</span>`
             empetyChat.style.display = 'none'
             chatArea.style.display = 'grid'
+            const t = JSON.parse(localStorage.getItem(friendButton[i].getAttribute('name')))
+            let y = ''
+            t.map(o => {
+                if (o.origin == 0) {
+                    y = y+`<div class="send-msg">${o.text}</div>`
+                } else {
+                    y = y+`<div class="receive-msg">${o.text}</div>`
+                }
+            })
+            msgArea.innerHTML = y
+            msgArea.scroll({top: msgArea.scrollHeight})
         })
     }
 }
@@ -91,6 +103,21 @@ function sendMsg(para, msg) {
     if (alvo == null && alvo == undefined && alvo == false) { localStorage.setItem(para, JSON.stringify([msg])); return }
     alvo.push(msg)
     localStorage.setItem(para, JSON.stringify(alvo))
+    msgArea.appendChild(createMsgElement('send-msg', msg.text))
+    msgArea.scroll({top: msgArea.scrollHeight + 999999999, behavior: 'smooth' })
+    socket.emit('msgSend', {
+        for: sessionStorage.getItem('userSelected'),
+        msg: { text: inputText.value, time: '14:20' }
+    })
+}
+
+function receiveMsg(para, msg) {
+    const alvo = JSON.parse(localStorage.getItem(para))
+    if (alvo == null && alvo == undefined && alvo == false) { localStorage.setItem(para, JSON.stringify([msg])); return }
+    alvo.push(msg)
+    localStorage.setItem(para, JSON.stringify(alvo))
+    msgArea.appendChild(createMsgElement('receive-msg', msg.text))
+    msgArea.scroll({top: msgArea.scrollHeight + 999999999, behavior: 'smooth' })
 }
 
 
@@ -102,6 +129,13 @@ function initChats() {
     })
 }
 
+
+function createMsgElement(mode, msg) {
+    const div = document.createElement('div')
+    div.setAttribute('class', mode)
+    div.innerHTML = msg
+    return div
+}
 
 
 window.addEventListener('load', event => {
@@ -122,13 +156,17 @@ sendButton.addEventListener('click', event => {
         time: '20:30',
         origin: 0
     })
-
 })
 
-
-
-
-
+socket.on('msgReceive', data => {
+    if (data.origin == sessionStorage.getItem('userSelected')) {
+        receiveMsg(sessionStorage.getItem('userSelected'), {
+            text: data.msg.text,
+            time: data.msg.time,
+            origin: 1
+        })
+    }
+})
 
 
 
