@@ -1,0 +1,57 @@
+.l-container {
+    background: rgb(97,216,222);
+    background: linear-gradient(43deg, rgba(97,216,222,1) 25%, rgba(232,57,246,1) 75%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+form {
+    height: 550px;
+    width: 350px;
+    background-color: white;
+    flex-direction: column;
+    padding: 0 20px;
+    border-radius: 10px;
+}
+
+.l-container h1 {
+    margin-bottom: 50px;
+}
+
+
+.l-container-inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.l-container input[type='text'], input[type='password'] {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    height: 40px;
+    padding: 0 5px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.178);
+}
+
+.l-container input[type='submit'] {
+    margin-top: 30px;
+    height: 40px;
+    border: none;
+    background: rgb(97,216,222);
+    background: linear-gradient(43deg, rgba(97,216,222,1) 25%, rgba(232,57,246,1) 75%);
+    border-radius: 20px;
+    font-weight: 700;
+    transition: 300ms;
+}
+
+.l-container input[type='submit']:hover {
+    opacity: 0.5;
+}
+
+
