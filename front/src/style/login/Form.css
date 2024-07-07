@@ -18,6 +18,21 @@ form {
     border-radius: 10px;
 }
 
+#l-form-login {
+    display: flex;  /*flex*/
+    transition: 200ms;
+    justify-content: center;
+}
+
+
+
+#l-container-login {
+    display: flex;  /*flex*/
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 .l-container h1 {
     margin-bottom: 50px;
 }
@@ -55,3 +70,31 @@ form {
 }
 
 
+
+
+#l-form-new-login {
+    display: none;
+    transition: 200ms;
+    opacity: 0;
+    justify-content: center;
+}
+
+
+#new-conta-button {
+    margin-top: 20px;
+    border: none;
+    background-color: transparent;
+    color: rgb(0, 153, 255);
+}
+
+#new-conta-button:hover{
+    color: blue;
+
+}
+#l-container-new-login {
+    display: flex;  /*flex*/
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}

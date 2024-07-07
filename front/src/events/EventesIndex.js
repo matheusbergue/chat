@@ -1,7 +1,5 @@
 import { io } from 'socket.io-client';
-
 const usersList = document.getElementById('users-list')
-
 const buttonSair = document.getElementById('sair')
 const friendButton = document.getElementsByClassName('user-select')
 const chatArea = document.getElementById('chat-area')
@@ -11,7 +9,6 @@ const inputText = document.getElementById('input-text')
 const msgArea = document.getElementById('msgArea')
 const apelidoCabecalho = document.getElementById('apelido-cabecalho')
 const inputBeckChat = document.getElementById('input-beck')
-
 const loginData = JSON.parse(localStorage.getItem('loginData'))
 if (!loginData) window.location.replace('/login.html')
 let socket = io('http://192.168.0.102:3000', {
@@ -76,16 +73,22 @@ async function tempTest (d) {
             'Content-Type': 'application/json'
         }
     }
-    const response = await fetch('http://localhost:3000/login', data)
+    const response = await fetch('http://192.168.0.102:3000/login', data)
     const body = await response.json()
     if (body != false) {
         localStorage.setItem('loginData', JSON.stringify(body))
     } else resetLogin()
 }
 
+function validarTextMsg(t) {
+    const regex = /[^ ]/i
+    return regex.test(t)
+}
+
 function sendMsg(para, msg) {
     const alvo = JSON.parse(localStorage.getItem(para))
     if (alvo == null && alvo == undefined && alvo == false) { localStorage.setItem(para, JSON.stringify([msg])); return }
+    if (!validarTextMsg(inputText.value)) return
     alvo.push(msg)
     localStorage.setItem(para, JSON.stringify(alvo))
     msgArea.appendChild(createMsgElement('send-msg', msg.text))

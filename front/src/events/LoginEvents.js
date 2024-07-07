@@ -1,9 +1,18 @@
 const form =  document.getElementById('l-form-login')
+const loginButton = document.getElementById('submit')
+const newContaButton = document.getElementById('new-conta-button')
+const formLogin = document.getElementById('l-form-login')
+const formNewLogin = document.getElementById('l-form-new-login')
+const submitNewConta = document.getElementById('submitCreateConta')
 
 
-form.addEventListener('submit', async event => {
+loginButton.addEventListener('click', async event => {
     const t = new FormData(form)
     const d = Object.fromEntries(t)
+
+
+    console.log(d)
+
     event.preventDefault()
     const data = {
         body: JSON.stringify(d),
@@ -30,4 +39,20 @@ form.addEventListener('submit', async event => {
 
 
 
+newContaButton.addEventListener('click', event => {
 
+    formLogin.style.opacity = '0'
+    setTimeout(e => {
+        formLogin.style.display = 'none'
+        formNewLogin.style.display = 'flex'
+        setTimeout(e => {
+            formNewLogin.style.opacity = '1'
+        })
+    }, 200)
+})
+
+
+formNewLogin.addEventListener('submit', event => {
+    event.preventDefault()
+    console.log('adsawdasawda')
+})

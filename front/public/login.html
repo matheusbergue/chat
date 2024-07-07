@@ -3,22 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
     <title>adawd</title>
 </head>
 <body>
     
 
     <div class="l-container">
-        
-        <form name="teste" id="l-form-login" method="post" class="flex-center" >
-            <h1>LOGIN</h1>
-            <div class="l-container-inputs">
-                <span>Username</span>
-                <input value="tekao" type="text" name="userName" id="userName" placeholder="Digite seu usuario">
-                <span>Password</span>
-                <input value="0000" type="password" name="senha" id="senha" placeholder="Digite sua senha">
-                <input id="submit" type="submit" value="LOGIN">
+        <form name="teste" id="l-form-login" method="post" >
+            <div id="l-container-login">
+                <h1>LOGIN</h1>
+                <div class="l-container-inputs">
+                    <span>Usuario</span>
+                    <input value="tekao" type="text" name="userName" id="userName" placeholder="Digite seu usuario">
+                    <span>senha</span>
+                    <input value="0000" type="password" name="senha" id="senha" placeholder="Digite sua senha">
+                    <input id="submit" type="submit" value="LOGIN">
+
+                    <input id="new-conta-button" type="button" value="Criar nova conta">
+                </div>
             </div>
+        </form>
+
+        <form id="l-form-new-login">
+            <div id="l-container-new-login">
+                <h1>NOVO</h1>
+                <div class="l-container-inputs">
+                    <span>Usuario</span>
+                    <input type="text" name="userName" id="-newuserName" placeholder="Digite seu usuario">
+                    <span>Apelido</span>
+                    <input type="text" name="apelido" id="-new-apelido" placeholder="Digite seu apelido">
+                    <span>senha</span>
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha">
+                    <input id="submitCreateConta" type="submit" minlength="4" value="CRIAR">
+                    
+                </div>
+            </div>
+
+
         </form>
 
     </div>
